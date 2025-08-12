@@ -56,8 +56,7 @@ async function postLoginController(req, res) {
     if (!user) {
         return res.redirect('/login?error=User not found');
     }
-
-
+    
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
         return res.redirect('/login?error=Invalid password');
@@ -67,10 +66,12 @@ async function postLoginController(req, res) {
 
     res.cookie('token', token);
 
-    return res.status(200).json({
-        message: "User logged in successfully",
-        user: user
-    });
+    // return res.status(200).json({
+    //     message: "User logged in successfully",
+    //     user: user
+    // });
+
+    return res.redirect('/'); // Assuming you have a dashboard route to redirect to after login
 }
 
 
