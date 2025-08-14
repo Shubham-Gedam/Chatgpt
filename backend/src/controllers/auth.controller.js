@@ -74,10 +74,15 @@ async function postLoginController(req, res) {
     return res.redirect('/'); // Assuming you have a dashboard route to redirect to after login
 }
 
+async function UserLogout(req, res) {    
+    res.clearCookie('token');
+    return res.redirect('/auth/login');
+}
 
 module.exports = {
     getRegisterController,
     postRegisterController,
     getLoginController,
-    postLoginController
+    postLoginController,
+    UserLogout
 };
